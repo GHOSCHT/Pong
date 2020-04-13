@@ -5,6 +5,7 @@ public class BallController : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public GameObject gameManager;
+    public AudioManager audioManager;
 
     private int initialSpeedX;
     private int initialSpeedY;
@@ -18,7 +19,7 @@ public class BallController : MonoBehaviour
         Bounce(collision);
     }
 
-    public void Start()
+    public void Play()
     {
         initialSpeedX = Random.Range(0, 2);
         initialSpeedY = Random.Range(0, 2);
@@ -41,6 +42,8 @@ public class BallController : MonoBehaviour
         switch (collision.tag)
         {
             case "Wall":
+                audioManager.GetComponent<AudioManager>().Bounce();
+
                 rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
                 return;
 
@@ -49,6 +52,8 @@ public class BallController : MonoBehaviour
                 relativeIntersect = collision.transform.position.y - gameObject.transform.position.y;
                 normalizedRelativeIntersect = (relativeIntersect / (collision.gameObject.transform.localScale.y / 2));
                 bounceAngle = normalizedRelativeIntersect * (5 * Mathf.PI / 12);
+
+                audioManager.GetComponent<AudioManager>().Bounce();
 
                 rb.velocity = new Vector2(-rb.velocity.x, -Mathf.Sin(bounceAngle) * (speed * Time.deltaTime));
                 return;

@@ -4,17 +4,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject ballPrefab;
-    public int player1Score = 0;
-    public int player2Score = 0;
     public GameObject player1ScoreDisplay;
     public GameObject player2ScoreDisplay;
-    public int round = 0;
-    public int minSpeed = 200;
+    public AudioManager audioManager;
+    public int minSpeed = 300;
     public int maxSpeed = 900;
-
-    public int speed;
+    public int speedIncrease = 25;
 
     private GameObject ball;
+    private int player1Score = 0;
+    private int player2Score = 0;
+    private int speed;
 
     private void Start()
     {
@@ -37,16 +37,17 @@ public class GameManager : MonoBehaviour
             player2ScoreDisplay.GetComponent<TextMeshProUGUI>().text = player2Score.ToString();
         }
 
+        audioManager.GameOver();
+
         Destroy(ball);
 
-        SpawnBall();
 
-        round++;
-
-        speed += 50;
+        speed += speedIncrease;
 
         if (speed > maxSpeed)
             speed = maxSpeed;
+
+        SpawnBall();
     }
 
     private void SpawnBall()
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         ball = Instantiate(ballPrefab);
         ball.GetComponent<BallController>().gameManager = gameObject;
         ball.GetComponent<BallController>().speed = speed;
-        ball.GetComponent<BallController>().Start();
+        ball.GetComponent<BallController>().audioManager = audioManager;
+        ball.GetComponent<BallController>().Play();
     }
 }

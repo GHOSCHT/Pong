@@ -118,8 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2577094824170061263}
-  speed: 200
+  speed: 0
   gameManager: {fileID: 0}
+  audioManager: {fileID: 0}
 --- !u!61 &3186334208813482114
 BoxCollider2D:
   m_ObjectHideFlags: 0
