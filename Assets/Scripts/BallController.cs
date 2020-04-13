@@ -34,7 +34,7 @@ public class BallController : MonoBehaviour
             initialSpeedY = -1;
         }
 
-        rb.velocity = new Vector2(initialSpeedX * speed * Time.deltaTime, initialSpeedY * speed * Time.deltaTime);
+        rb.velocity = new Vector2(initialSpeedX * speed, initialSpeedY * speed);
     }
 
     private void Bounce(Collider2D collision)
@@ -55,7 +55,7 @@ public class BallController : MonoBehaviour
 
                 audioManager.GetComponent<AudioManager>().Bounce();
 
-                rb.velocity = new Vector2(-rb.velocity.x, -Mathf.Sin(bounceAngle) * (speed * Time.deltaTime));
+                rb.velocity = new Vector2(-rb.velocity.x, -Mathf.Sin(bounceAngle) * speed);
                 return;
 
             case "GameOverPlayer1":

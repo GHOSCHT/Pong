@@ -5,6 +5,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource src;
     public AudioClip bounce;
     public AudioClip gameOver;
+    public AudioClip countdown;
 
     public void Bounce()
     {
@@ -15,6 +16,13 @@ public class AudioManager : MonoBehaviour
     public void GameOver()
     {
         src.clip = gameOver;
+        src.volume = 0.3f;
+        src.Play();
+    }
+
+    public void Countdown()
+    {
+        src.clip = countdown;
         src.volume = 0.3f;
         src.Play();
     }

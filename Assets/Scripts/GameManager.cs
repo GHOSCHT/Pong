@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,20 +7,22 @@ public class GameManager : MonoBehaviour
     public GameObject ballPrefab;
     public GameObject player1ScoreDisplay;
     public GameObject player2ScoreDisplay;
+    public GameObject countdownDisplay;
     public AudioManager audioManager;
-    public int minSpeed = 300;
-    public int maxSpeed = 900;
-    public int speedIncrease = 25;
+    public int countdownTime = 3;
+    public float minSpeed = 1;
+    public float maxSpeed = 5;
+    public float speedIncrease = 0.5f;
 
     private GameObject ball;
     private int player1Score = 0;
     private int player2Score = 0;
-    private int speed;
+    private float speed;
 
     private void Start()
     {
         speed = minSpeed;
-        SpawnBall();
+        StartCoroutine(Countdown());
     }
 
     public void GameOver(bool isPlayer1)
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (speed > maxSpeed)
             speed = maxSpeed;
 
-        SpawnBall();
+        StartCoroutine(Countdown());
     }
 
     private void SpawnBall()
@@ -57,5 +60,26 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<BallController>().speed = speed;
         ball.GetComponent<BallController>().audioManager = audioManager;
         ball.GetComponent<BallController>().Play();
+    }
+
+    IEnumerator Countdown()
+    {
+        countdownDisplay.GetComponent<TextMeshProUGUI>().enabled = true;
+        int time = countdownTime;
+
+        while (time > 0)
+        {
+            countdownDisplay.GetComponent<TextMeshProUGUI>().text = time.ToString();
+
+            audioManager.Countdown();
+
+            yield return new WaitForSeconds(1f);
+
+            time--;
+        }
+
+        countdownDisplay.GetComponent<TextMeshProUGUI>().enabled = false;
+
+        SpawnBall();
     }
 }
