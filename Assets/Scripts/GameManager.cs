@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject ballPrefab;
     public int player1Score = 0;
     public int player2Score = 0;
+    public GameObject player1ScoreDisplay;
+    public GameObject player2ScoreDisplay;
     public int round = 0;
     public int minSpeed = 200;
     public int maxSpeed = 900;
@@ -25,11 +28,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player 2 wins!");
             player1Score++;
+            player1ScoreDisplay.GetComponent<TextMeshProUGUI>().text = player1Score.ToString();
         }
         else
         {
             Debug.Log("Player 1 wins!");
             player2Score++;
+            player2ScoreDisplay.GetComponent<TextMeshProUGUI>().text = player2Score.ToString();
         }
 
         Destroy(ball);
