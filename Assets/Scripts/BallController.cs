@@ -9,6 +9,10 @@ public class BallController : MonoBehaviour
     private int initialSpeedX;
     private int initialSpeedY;
 
+    private float relativeIntersect;
+    private float normalizedRelativeIntersect;
+    private float bounceAngle;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bounce(collision);
@@ -36,15 +40,23 @@ public class BallController : MonoBehaviour
     {
         switch (collision.tag)
         {
-            case "BounceY":
+            case "Wall":
                 rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
                 return;
-            case "BounceX":
-                rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+
+            case "Paddle1":
+            case "Paddle2":
+                relativeIntersect = collision.transform.position.y - gameObject.transform.position.y;
+                normalizedRelativeIntersect = (relativeIntersect / (collision.gameObject.transform.localScale.y / 2));
+                bounceAngle = normalizedRelativeIntersect * (5 * Mathf.PI / 12);
+
+                rb.velocity = new Vector2(-rb.velocity.x, -Mathf.Sin(bounceAngle) * (speed * Time.deltaTime));
                 return;
+
             case "GameOverPlayer1":
                 gameManager.GetComponent<GameManager>().GameOver(true);
                 return;
+
             case "GameOverPlayer2":
                 gameManager.GetComponent<GameManager>().GameOver(false);
                 return;

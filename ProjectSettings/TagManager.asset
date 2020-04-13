@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BounceX
-  - BounceY
   - GameOverPlayer1
   - GameOverPlayer2
+  - Paddle1
+  - Paddle2
+  - Wall
   layers:
   - Default
   - TransparentFX

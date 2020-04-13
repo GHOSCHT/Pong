@@ -277,8 +277,8 @@ MonoBehaviour:
   player1Score: 0
   player2Score: 0
   round: 0
-  minSpeed: 200
-  maxSpeed: 900
+  minSpeed: 300
+  maxSpeed: 300
   speed: 0
 --- !u!1 &519420028
 GameObject:
@@ -502,6 +502,7 @@ Transform:
   - {fileID: 1096585485}
   - {fileID: 863469574}
   - {fileID: 434791348}
+  - {fileID: 1823869557}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -520,7 +521,7 @@ GameObject:
   - component: {fileID: 917260090}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: BounceX
+  m_TagString: Paddle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,7 +667,7 @@ GameObject:
   - component: {fileID: 1096585486}
   m_Layer: 0
   m_Name: BottomWall
-  m_TagString: BounceY
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,7 +775,7 @@ GameObject:
   - component: {fileID: 1580281631}
   m_Layer: 0
   m_Name: TopWall
-  m_TagString: BounceY
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -884,7 +885,7 @@ GameObject:
   - component: {fileID: 1632845485}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: BounceX
+  m_TagString: Paddle2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1028,7 +1029,7 @@ GameObject:
   - component: {fileID: 1823869557}
   - component: {fileID: 1823869556}
   m_Layer: 0
-  m_Name: cube
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,10 +1092,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823869555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 15, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 898805432}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
