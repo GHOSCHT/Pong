@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         speed = minSpeed;
+        Cursor.visible = false;
         StartCoroutine(Countdown());
     }
 
